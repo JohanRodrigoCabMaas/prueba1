@@ -31,5 +31,7 @@ jobs:
       uses: amondnet/vercel-action@v25
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        vercel-args: '--prod --y'  # ← --yes para modo no interactivo
+        vercel-org-id: ${{ secrets.ORG_ID }}       # ← NECESARIOS
+        vercel-project-id: ${{ secrets.PROJECT_ID }} # ← NECESARIOS
+        vercel-args: '--prod'
         working-directory: ./
