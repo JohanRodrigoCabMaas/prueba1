@@ -22,7 +22,7 @@ jobs:
 
     - name: Build Flutter Web with Vercel Environment Variables
       run: |
-        flutter build web --release --web-renderer html \
+        flutter build web --release \
           --dart-define=APP_NAME="${{ secrets.APP_NAME || 'Default App' }}" \
           --dart-define=API_URL="${{ secrets.API_URL || 'https://default.com' }}" \
           --dart-define=DEBUG="${{ secrets.DEBUG || 'false' }}"
