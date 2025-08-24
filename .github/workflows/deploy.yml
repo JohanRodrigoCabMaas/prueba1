@@ -7,6 +7,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      APP_NAME: Mi App Production
+      API_URL: https://api.produccion.com
+      DEBUG: false
 
     steps:
     - name: Checkout code
@@ -20,14 +24,23 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
+    - name: Create environment file
+      run: |
+        echo "APP_NAME=$APP_NAME" > assets/.env
+        echo "API_URL=$API_URL" >> assets/.env
+        echo "DEBUG=$DEBUG" >> assets/.env
+        echo "✅ Environment file created:"
+        cat assets/.env
+
     - name: Build Flutter Web
       run: flutter build web --release --web-renderer html
+
+    - name: List build files
+      run: ls -la build/web/
 
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v25
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
         vercel-args: '--prod'
-        vercel-org-id: ${{ secrets.ORG_ID }}
-        vercel-project-id: ${{ secrets.PROJECT_ID }}
         working-directory: ./
