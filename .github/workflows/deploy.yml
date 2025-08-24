@@ -31,5 +31,5 @@ jobs:
       uses: amondnet/vercel-action@v25
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        vercel-args: '--prod --yes'  # ← --yes para modo no interactivo
+        vercel-args: '--prod --y'  # ← --yes para modo no interactivo
         working-directory: ./
