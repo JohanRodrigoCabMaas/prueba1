@@ -26,11 +26,11 @@ jobs:
 
     - name: Create environment file
       run: |
-        echo "APP_NAME=$APP_NAME" > assets/config/.env
-        echo "API_URL=$API_URL" >> assets/config/.env
-        echo "DEBUG=$DEBUG" >> assets/config/.env
+        echo "APP_NAME=$APP_NAME" > assets/.env
+        echo "API_URL=$API_URL" >> assets/.env
+        echo "DEBUG=$DEBUG" >> assets/.env
         echo "✅ Environment file created:"
-        cat assets/config/.env
+        cat assets/.env
 
     - name: Build Flutter Web
       run: flutter build web --release --web-renderer html
