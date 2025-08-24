@@ -19,24 +19,21 @@ jobs:
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.22.0'
+        flutter-version: '3.27.2'  # ← VERSIÓN EXACTA QUE TIENES
 
     - name: Install dependencies
       run: flutter pub get
 
     - name: Create environment file
       run: |
-        echo "APP_NAME=$APP_NAME" > assets/.env
-        echo "API_URL=$API_URL" >> assets/.env
-        echo "DEBUG=$DEBUG" >> assets/.env
+        echo "APP_NAME=$APP_NAME" > assets/config/.env
+        echo "API_URL=$API_URL" >> assets/config/.env
+        echo "DEBUG=$DEBUG" >> assets/config/.env
         echo "✅ Environment file created:"
-        cat assets/.env
+        cat assets/config/.env
 
     - name: Build Flutter Web
       run: flutter build web --release --web-renderer html
-
-    - name: List build files
-      run: ls -la build/web/
 
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v25
